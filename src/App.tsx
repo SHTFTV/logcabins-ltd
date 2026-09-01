@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { CabinModel, LandPlot } from './types';
 import { CABIN_MODELS, SURROUNDING_LAND_PLOTS } from './data/mockData';
 import { Navbar } from './components/Navbar';
@@ -21,10 +22,12 @@ import { FAQAccordion } from './components/FAQAccordion';
 import { Footer } from './components/Footer';
 import { BCCanadaSection } from './components/BCCanadaSection';
 import { BCPartnerFloater } from './components/BCPartnerFloater';
+import { BCLocationsIndexPage } from './pages/BCLocationsIndexPage';
+import { BCLocationPage } from './pages/BCLocationPage';
 import { SUPERIOR_LOG_RESTORATIONS } from './data/bcPartner';
 import { ShieldCheck, Trees, ArrowRight, Sparkles, Phone, Compass, Scale } from 'lucide-react';
 
-export default function App() {
+function AppShell() {
   // Navigation
   const [activeTab, setActiveTab] = useState<string>('cabins');
 
@@ -151,19 +154,23 @@ export default function App() {
         comparedCount={comparisonCabinIds.length}
       />
 
-      {/* Hero Section */}
-      <HeroSection
-        onBrowseListings={handleBrowseListings}
-        onExploreLand={handleExploreLand}
-        onViewProjects={handleViewProjects}
-        onOpenConfigurator={(cabinId) => handleOpenConfigurator(cabinId)}
-        onOpenAdvisor={() => setIsAdvisorOpen(true)}
-        onOpenBooking={(topic) => handleOpenBooking(topic)}
-      />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              {/* Hero Section */}
+              <HeroSection
+                onBrowseListings={handleBrowseListings}
+                onExploreLand={handleExploreLand}
+                onViewProjects={handleViewProjects}
+                onOpenConfigurator={(cabinId) => handleOpenConfigurator(cabinId)}
+                onOpenAdvisor={() => setIsAdvisorOpen(true)}
+                onOpenBooking={(topic) => handleOpenBooking(topic)}
+              />
 
-
-      {/* Main Content Area based on tabs or all-in-one scroll */}
-      <main className="flex-1">
+              {/* Main Content Area based on tabs or all-in-one scroll */}
+              <main className="flex-1">
         {/* Cabins Explorer */}
         <CabinExplorer
           onSelectCabin={(cabin) => setInspectedCabin(cabin)}
@@ -259,7 +266,13 @@ export default function App() {
             </div>
           </div>
         </section>
-      </main>
+              </main>
+            </>
+          }
+        />
+        <Route path="/bc-log-restoration" element={<BCLocationsIndexPage />} />
+        <Route path="/bc-log-restoration/:citySlug" element={<BCLocationPage />} />
+      </Routes>
 
       {/* Footer */}
       <Footer
@@ -331,6 +344,14 @@ export default function App() {
 
       <BCPartnerFloater partner={SUPERIOR_LOG_RESTORATIONS} />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppShell />
+    </BrowserRouter>
   );
 }
 

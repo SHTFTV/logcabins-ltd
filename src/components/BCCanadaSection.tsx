@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Phone, MapPin, Star, ExternalLink, ShieldCheck } from 'lucide-react';
 import { SUPERIOR_LOG_RESTORATIONS } from '../data/bcPartner';
 
@@ -55,12 +56,20 @@ export const BCCanadaSection: React.FC<BCCanadaSectionProps> = ({ onBookConsulta
               ))}
             </div>
 
-            <button
-              onClick={() => onBookConsultation('BC, Canada Log Home Restoration Referral')}
-              className="mt-2 inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold text-stone-950 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 transition-all cursor-pointer"
-            >
-              Ask Us About BC Referrals
-            </button>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <button
+                onClick={() => onBookConsultation('BC, Canada Log Home Restoration Referral')}
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold text-stone-950 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 transition-all cursor-pointer"
+              >
+                Ask Us About BC Referrals
+              </button>
+              <Link
+                to="/bc-log-restoration"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold text-stone-200 border border-stone-700 hover:border-stone-500 transition-colors"
+              >
+                Find Your BC City <ExternalLink className="w-3.5 h-3.5" />
+              </Link>
+            </div>
           </div>
 
           <div className="md:col-span-2 bg-stone-900/70 border-t md:border-t-0 md:border-l border-stone-800 p-6 sm:p-8 flex flex-col justify-between gap-6">

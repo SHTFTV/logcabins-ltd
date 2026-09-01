@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Trees, Mail, Heart } from 'lucide-react';
 
 interface FooterProps {
@@ -119,6 +120,11 @@ export const Footer: React.FC<FooterProps> = ({
                 >
                   BC, Canada Restoration Partner
                 </button>
+              </li>
+              <li>
+                <Link to="/bc-log-restoration" className="hover:text-amber-400 transition-colors">
+                  BC Restoration by City
+                </Link>
               </li>
               <li>
                 <button 
