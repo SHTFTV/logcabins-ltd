@@ -1,0 +1,6 @@
+{
+  "name": "LogCabins.ltd - Sales, Turnkey Service & Surrounding Real Estate",
+  "description": "Premium timber log cabins for sale, custom architectural construction services, and build-ready real estate land plots with planning advisory.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
